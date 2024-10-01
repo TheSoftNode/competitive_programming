@@ -1,48 +1,35 @@
 
 ;; title: Array
 ;; version: 1
-;; summary: This is the leetcode answers under array with clarity.
-;; description: This is to solidify my knowledge of clarity language. It features the easy questions under array in clarity language.
+;; summary: Solidify clarity language knowledge
+;; description: This is to solidify my knowledge of clarity language. 
 
-
-(define-public (two-sum (nums (list 100 uint)) (target uint))
-  (let ((result (find-two-sum nums target 0 {})))
-    (if (is-none result)
-        (err u404) ;; Return an error if no solution is found
-        (ok (unwrap! result (err u500))) ;; Return the result if found
-    )
-  )
+;; Exercuse 1:
+;; Write a square function so that (map square <list>) returns the squared value of each number (uint) of the list.
+(define-private (square (n uint))
+  (* n n)
 )
 
-;; Helper function to recursively find two numbers that add up to the target
-(define-private (find-two-sum (nums (list 100 uint)) (target uint) (index uint) (index-map (map uint uint)))
-  (match (get index nums)
-    ;; If no more numbers are left to check, return none
-    value-none (none)
+(print (map square (list u1 u2 u3 u4 u5)))
 
-    ;; If there are still numbers to check, proceed
-    value-some
-    (let
-      (
-        ;; Current number
-        (current (unwrap-panic value-some))
+(print (is-eq (map square (list u1 u2 u3 u4 u5)) (list u1 u4 u9 u16 u25)))
 
-        ;; Difference between target and current number
-        (difference (uint-sub target current))
 
-        ;; Check if the difference exists in the index-map
-        (found-index (map-get? index-map difference))
-      )
+;; Exercise 2:
+;; Define a data-map matching IDs (uint) to Pseudos (string-utf8). 
+;; Write a public function get-10-pseudos that takes a list of up to 10 IDs 
+;; and returns the matching 10 pseudos.
+(define-map psuedos uint (string-utf8 100))
 
-      ;; If we find the difference, return the indices
-      (if found-index
-        (some {index1: (unwrap-panic found-index), index2: index})
+(map-insert psuedos u0 u"uche")
+(map-insert psuedos u1 u"theo")
+(map-insert psuedos u2 u"onyi")
+(map-insert psuedos u4 u"matt")
 
-        ;; Otherwise, update the map and check the next number recursively
-        (find-two-sum nums target (uint-add index u1) (map-set index-map current index))
-      )
-    )
-  )
+(define-private (get-1-psuedo (id uint)) 
+  (map-get? psuedos id)
 )
 
-
+(define-private (get-10-pseudo (ids (list 10 uint))) 
+  (map get-1-psuedo ids)
+)
