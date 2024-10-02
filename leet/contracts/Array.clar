@@ -39,7 +39,7 @@
 (print (get-10-pseudos (list u0 u3 u4)))
 
 
-;; Exercise 3:
+;; Exercise 3:ASD
 ;; Write a function called is-even so that (filter is-even <list>) 
 ;; returns the list of even numbers from the <list>.
 (define-private (is-even (n uint)) 
