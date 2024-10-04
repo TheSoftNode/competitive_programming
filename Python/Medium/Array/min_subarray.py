@@ -1,4 +1,5 @@
 from typing import List
+"""Minimuim length of contiguous subarray divisible by k"""
 
 class Solution:
     def minSubarray(self, nums: List[int], p:int) -> int:
